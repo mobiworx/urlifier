@@ -10,10 +10,10 @@ Usage example:
 
 import urlifier.syntax._
 
-val german = path("language", "de")
-val version = path[Long]("version")
+val german = param("language", "de")
+val version = param[Long]("version")
 val foobar = ("foo" -> "bar")
       
-val url = "http://some-url.de" ? german & version(1) & foobar
-val str = url.toString
+val url1 = (http :|| "my-domain".de) ? german & version(1) & foobar
+val str = url1.toString
 ``` 

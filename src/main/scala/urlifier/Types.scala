@@ -11,6 +11,14 @@ case class PathKey[B](val k:String) {
   def apply(v:B) = PathKeyValue(k, v.toString)
 }
 
+
+class Protocol(val protocol:String) {
+  def :|| (domainName:String) = new {
+    def ?[A,B](path:PathKeyValue[A,B]) = new HostComp(protocol + "://" + domainName, path)
+  }  
+}
+
+
 class HostComp[A,B](val host:String, val path:PathKeyValue[A,B]) {
   
   private val paths = scala.collection.mutable.ListBuffer[PathTuple](PathTuple(path.k.toString -> path.v.toString))
