@@ -14,6 +14,10 @@ val german = param("language", "de")
 val version = param[Long]("version")
 val foobar = ("foo" -> "bar")
       
-val url1 = (http :|| "my-domain".de) ? german & version(1) & foobar
-val str = url1.toString
+val url1 = (http || "mobiworx".de) ? german & version(1) & foobar
+val str1 = url1.toString // "http://mobiworx.de/?language=de&version=1&foo=bar"
+
+val url2 = (https || "www.domain".com | 8080 | "some" | "path" ) ? param("foo", "bar")
+val str2 = url2.toString // "https://www.domain.com:8080/some/path?foo=bar"
+
 ``` 

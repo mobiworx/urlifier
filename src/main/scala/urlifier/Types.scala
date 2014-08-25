@@ -1,5 +1,7 @@
 package urlifier
 
+import scala.collection.mutable
+
 sealed trait Path
 case class PathKeyValue[A,B](val k:A, val v:B) extends Path
 case class PathTuple(val t:(String,String)) extends Path {
@@ -13,15 +15,36 @@ case class PathKey[B](val k:String) {
 
 
 class Protocol(val protocol:String) {
-  def :|| (domainName:String) = new {
-    def ?[A,B](path:PathKeyValue[A,B]) = new HostComp(protocol + "://" + domainName, path)
-  }  
+  
+  def || (domainName:String) = new {
+    
+    private var port:Option[Int] = None
+    private val fragments = mutable.ListBuffer[String]()
+    
+    def ?[A,B](param:PathKeyValue[A,B]) = new HostComp(protocol + 
+      "://" + 
+      domainName + 
+      port.map(":" + _ + "/").getOrElse("/") + 
+      fragments.mkString("/"), param) 
+
+    def |(port:Int) = {
+      this.port = Some(port)
+      this
+    }
+
+    def |(fragment:String) = {
+      fragments += fragment
+      this
+    }
+
+  }
+  
 }
 
 
 class HostComp[A,B](val host:String, val path:PathKeyValue[A,B]) {
   
-  private val paths = scala.collection.mutable.ListBuffer[PathTuple](PathTuple(path.k.toString -> path.v.toString))
+  private val paths = mutable.ListBuffer(PathTuple(path.k.toString -> path.v.toString))
   
   def &[A,B](other:PathKeyValue[A,B]):this.type = &(other.k.toString -> other.v.toString)
   

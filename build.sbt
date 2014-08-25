@@ -2,9 +2,7 @@ organization := "com.mobiworx.urlifier"
 
 name := "urlifier"
 
-version := "0.2"
-
-scalaVersion := "2.10.4"
+version := "0.3"
 
 libraryDependencies ++= Seq(
     "org.specs2" %% "specs2" % "2.4" % "test"	
