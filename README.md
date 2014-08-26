@@ -3,7 +3,7 @@ urlifier
 
 urlifier covers basic operations to construct urls that are typechecked. 
 
-Usage example:
+Usage example
 ==============
 
 ```scala
@@ -21,3 +21,11 @@ val url2 = (https || "www.domain".com | 8080 | "some" | "path" ) ? param("foo", 
 val str2 = url2.toString // "https://www.domain.com:8080/some/path?foo=bar"
 
 ``` 
+
+SBT
+==============
+```scala
+
+"de.mobiworx.urlifier" %% "urlifier" % "0.3"
+
+```

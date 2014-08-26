@@ -1,4 +1,4 @@
-organization := "com.mobiworx.urlifier"
+organization := "de.mobiworx.urlifier"
 
 name := "urlifier"
 
