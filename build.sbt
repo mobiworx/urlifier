@@ -23,14 +23,6 @@ licenses := Seq("BSD-style" -> url("http://www.opensource.org/licenses/bsd-licen
 homepage := Some(url("http://github.com/mobiworx/urlifier"))
 
 pomExtra := (
-  <url>http://github.com/mobiworx/urlifier</url>
-  <licenses>
-    <license>
-      <name>BSD-style</name>
-      <url>http://www.opensource.org/licenses/bsd-license.php</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
   <scm>
     <url>git@github.com:mobiworx/urlifier.git</url>
     <connection>scm:git:git@github.com:mobiworx/urlifier.git</connection>

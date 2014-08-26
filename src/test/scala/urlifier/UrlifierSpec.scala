@@ -18,6 +18,9 @@ class UrlifierSpec extends Specification {
 
       val url2 = (https || "www.domain".com | 8080 | "some" | "path" ) ? param("foo", "bar")
       url2.toString === "https://www.domain.com:8080/some/path?foo=bar"
+        
+      val url3 = (http || "domain.de") ? german & param("empty", "") & param("foo", "bar")
+      url3.toString === "http://domain.de/?language=de&empty=&foo=bar"
 
     }
 
